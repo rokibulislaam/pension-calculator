@@ -3,6 +3,7 @@ from tkinter import *
 
 root = Tk()
 
+
 # color will be use gray70
 root.geometry("1300x770+115+15")
 root.resizable(0,0)
@@ -29,7 +30,7 @@ rightframe.pack(expand = TRUE, fill = BOTH, side = LEFT, padx = 15, pady = 20)
 heading = Label(
     header,
     text = "BASIC PENSION AND COMMUTATION CALCULATOR",
-    font = ("times", 22),
+    font = ("Product Sans", 22, "bold"),
     bg = "white",
     fg = "black",
     )
