@@ -18,11 +18,11 @@ header.pack( fill = X, side = TOP)
 centreframe = Frame(root, bg = "white")
 centreframe.pack(fill = BOTH, side = TOP, expand = TRUE)
 
-leftframe = Frame(centreframe, bg = "gray75", padx = 5, pady = 5)
-leftframe.pack(expand = TRUE, fill = BOTH, side = LEFT, padx = 15, pady = 20)
+leftframe = Frame(centreframe, bg = "gray82", padx = 8, pady = 5)
+leftframe.pack(expand = TRUE, fill = BOTH, side = LEFT, padx = 20, pady = 20)
 
-rightframe = Frame(centreframe, bg = "gray75", padx = 5, pady = 5 )
-rightframe.pack(expand = TRUE, fill = BOTH, side = LEFT, padx = 15, pady = 20)
+rightframe = Frame(centreframe, bg = "gray82", padx = 8, pady = 5 )
+rightframe.pack(expand = TRUE, fill = BOTH, side = LEFT, padx = 20, pady = 20)
 
 
 
@@ -34,110 +34,116 @@ heading = Label(
     bg = "white",
     fg = "black",
     )
-heading.pack(expand = TRUE, fill = X, pady = 5)
+heading.pack(expand = TRUE, fill = X, pady = 6)
 
 heading1 = Label(
     leftframe,
     text = "ENTER DATA TO CALCULATE PENSION AND COMMUTATION",
     font = ("arial", 15),
     fg = "black",
-    bg = "gray75",
+    bg = "gray82",
     pady = 2
 )
 heading1.pack(side = TOP)
 
 frame1 = Frame(leftframe, 
-    bg = "gray75",
+    bg = "gray82",
     bd = 1,
     highlightbackground="black",
     highlightthickness=1
 )
-frame1.pack(expand = TRUE, fill = BOTH, padx = 6, pady = 5)
+frame1.pack(expand = TRUE, fill = BOTH, padx = 8, pady = 5)
 
 frame2 = Frame(leftframe, 
-    bg = "gray75",
+    bg = "gray82",
     bd = 1,
     highlightbackground="black",
     highlightthickness=1
 )
 
-frame2.pack(expand = TRUE, fill = BOTH, padx = 6, pady = 5)
+frame2.pack(expand = TRUE, fill = BOTH, padx = 8, pady = 5)
 
 frame3 = Frame(leftframe, 
-    bg = "gray75",
+    bg = "gray82",
     bd = 1,
     highlightbackground="black",
     highlightthickness=1
 )
 
-frame3.pack(expand = TRUE, fill = BOTH, padx = 6, pady = 5)
+frame3.pack(expand = TRUE, fill = BOTH, padx = 8, pady = 5)
 
 frame4 = Frame(leftframe, 
-    bg = "gray75",
+    bg = "gray82",
     bd = 1,
     highlightbackground="black",
     highlightthickness=1
 )
 
-frame4.pack(expand = TRUE, fill = BOTH, padx = 6, pady = 5)
+frame4.pack(expand = TRUE, fill = BOTH, padx = 8, pady = 5)
 
 frame5 = Frame(leftframe, 
-    bg = "gray75",
+    bg = "gray82",
     bd = 1,
     highlightbackground="black",
     highlightthickness=1
 )
 
-frame5.pack(expand = TRUE, fill = BOTH, padx = 6, pady = 5)
+frame5.pack(expand = TRUE, fill = BOTH, padx = 8, pady = 5)
 
 frame6 = Frame(leftframe, 
-    bg = "gray75",
+    bg = "gray82",
     bd = 1,
     highlightbackground="black",
     highlightthickness=1
 )
 
-frame6.pack(expand = TRUE, fill = BOTH, padx = 6, pady = 5)
+frame6.pack(expand = TRUE, fill = BOTH, padx = 8, pady = 5)
 
 submitbutton1 = Button(
     leftframe,
     text = "SUBMIT",
-    font = ("arial", 13),
+    font = ("arial", 13, "bold"),
     fg = "black",
     bg = "gray45",
     relief = FLAT,
     padx = 6,
-    pady = 2
+    pady = 2,
+    activebackground = "black",
+    activeforeground = "white",
+    
 )
-submitbutton1.pack(pady = 5)
+submitbutton1.pack(pady = 8)
 
 frame7 = Frame(leftframe, 
-    bg = "gray75",
+    bg = "gray82",
     bd = 1,
     highlightbackground="black",
     highlightthickness=1
 )
 
-frame7.pack(expand = TRUE, fill = BOTH, padx = 6, pady = 5)
+frame7.pack(expand = TRUE, fill = BOTH, padx = 8, pady = 5)
 
 frame8 = Frame(leftframe, 
-    bg = "gray75",
+    bg = "gray82",
     bd = 1,
     highlightbackground="black",
     highlightthickness=1
 )
 
-frame8.pack(expand = TRUE, fill = BOTH, padx = 6, pady = 5)
+frame8.pack(expand = TRUE, fill = BOTH, padx = 8, pady = 5)
 
 submitbutton2 = Button(
     leftframe,
     text = "SUBMIT",
-    font = ("arial", 13),
+    font = ("arial", 13, "bold"),
     fg = "black",
     bg = "gray45",
     relief = FLAT,
     padx = 6,
-    pady = 2
+    pady = 2,
+    activebackground = "black",
+    activeforeground = "white",
+    
 )
 submitbutton2.pack(pady = 5)
 
@@ -146,7 +152,7 @@ heading2 = Label(
     text = "PENSION AND COMMUTED VALUE",
     font = ("arial", 15),
     fg = "black",
-    bg = "gray75"
+    bg = "gray82"
 )
 heading2.pack(side = TOP )
 
