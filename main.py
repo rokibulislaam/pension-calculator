@@ -51,6 +51,20 @@ def calculate_pension():
     qyear.set(tempyear)
 
 
+def cal_commutation():
+    if(coummutper.get() and age.get()):
+        percentage_of_basic_payscale = float(
+            bpension.get()) * int(coummutper.get())/100
+        age_next_birthday = int(age.get())
+        commutation = 12 * \
+            int(get_commutation_value(age_next_birthday)) * \
+            int(percentage_of_basic_payscale)
+        global cammount
+        global rmpension
+        cammount.set(commutation)
+        rmpension.set(float(bpension.get()) - percentage_of_basic_payscale)
+
+
 root = tk.Tk()
 
 
@@ -189,6 +203,7 @@ submitbutton2 = Button(
     pady=2,
     activebackground="black",
     activeforeground="white",
+    command=cal_commutation
 
 )
 submitbutton2.pack(pady=5)
@@ -448,13 +463,13 @@ coummutper.pack(side=RIGHT, padx=10)
 coummutper.current(0)  # method to set default value
 
 
-def set_percentage_comm_val(event):
-    percentageOfComm = event.widget.get()
-    if(event.Widget.get() != 'Select'):
-        cal_retirement()
+# def set_percentage_comm_val(event):
+#     percentage_of_comm = event.widget.get()
+#     if(event.Widget.get() != 'Select'):
+#         cal_commutation(percentage_of_comm)
 
 
-coummutper.bind('<<ComboboxSelected>>', set_percentage_comm_val)
+# coummutper.bind('<<ComboboxSelected>>', set_percentage_comm_val)
 
 # ******************* codes for age next birthday user input entry box*************
 
