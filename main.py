@@ -1,7 +1,10 @@
-import tkinter
-from tkinter import *
-from tkinter import ttk
-from tkinter import font
+import os
+import tkinter as tk
+from tkinter import Button, Entry, Frame, Label, StringVar
+from tkinter.constants import BOTH, CENTER, E, FLAT, LEFT, RIGHT, TOP, TRUE, W, X
+from tkinter.ttk import Combobox
+from utils.get_commutation_value import get_commutation_value
+from utils.calc_basic_pay import cal_basic_pay
 
 # ******** definition of functions***************************************
 
@@ -11,13 +14,6 @@ tempyear = 0   # global variable
 tempbpension = 0      # global variable
 typeOfretirement = "Select"  # global variable
 percentageOfComm = "Select"  # global variable
-
-
-def cal_basicPay():
-    global tempbpension
-    tempbpension = int(basicpay.get())
-    tempbpension = tempbpension/2
-    return tempbpension
 
 
 def cal_service():
@@ -40,13 +36,13 @@ def cal_retirement():
     r_year.set(str(rtempyear))
 
 
-
-def calculatePension():
+def calculate_pension():
     # if user keep basic pay entry box empty then no funtion will be called
-    tempbpension = cal_basicPay()
+    tempbpension = cal_basic_pay(basicpay_widget=basicpay)
     bpension.set(tempbpension)
     mpension.set(tempbpension)
-    fpension.set(int(basicpay.get()) * 0.3) #30% of basic paysclae for family pension
+    # 30% of basic paysclae for family pension
+    fpension.set(int(basicpay.get()) * 0.3)
     cammount.set("N/A")
     rmpension.set("N/A")
     cal_service()
@@ -54,14 +50,14 @@ def calculatePension():
     qyear.set(tempyear)
 
 
-root = Tk()
+root = tk.Tk()
 
 
 # color will be used gray70
 root.geometry("1300x770+115+15")
 root.resizable(0, 0)
 root.title("Pension_Calculator")
-root.iconbitmap("D:/GUI/icons/pcalcy1.ico")
+root.iconbitmap(os.path.join(os.getcwd(), 'icons', 'pcalcy1.ico'))
 
 # ********************* codes for main frame and sub frame******************************
 
@@ -158,7 +154,7 @@ submitbutton1 = Button(
     pady=2,
     activebackground="black",
     activeforeground="white",
-    command=calculatePension
+    command=calculate_pension
 
 )
 submitbutton1.pack(pady=8)
@@ -360,8 +356,8 @@ label7.pack(side=LEFT)
 # ********************codes for dropdown user inputs****************
 # Combobox creation
 
-typeRetirement = ttk.Combobox(Lframe2, width=28, values=[
-                              "Select", "Superannuation", "VRS"], state="readonly")
+typeRetirement = Combobox(Lframe2, width=28, values=[
+    "Select", "Superannuation", "VRS"], state="readonly")
 
 
 typeRetirement.pack(side=RIGHT, padx=10)
@@ -371,9 +367,8 @@ typeRetirement.current(0)  # method to set default value
 def change_combobox_value(eventObject):
     typeOfretirement = eventObject.widget.get()
     print(typeOfretirement)
-    if(eventObject.widget.get() == "Superannuation"):
-        if(eventObject.widget.get()):
-            cal_retirement()
+    if(eventObject.widget.get() == "Superannuation" and eventObject.widget.get()):
+        cal_retirement()
 
 
 typeRetirement.bind('<<ComboboxSelected>>', change_combobox_value)
@@ -382,9 +377,9 @@ typeRetirement.bind('<<ComboboxSelected>>', change_combobox_value)
 # ******************* enrty input filed for DOB user input entry box***************************
 
 
-dobdate = ttk.Entry(Lframe1, width=5, justify=CENTER)
-dobmonth = ttk.Entry(Lframe1, width=5, justify=CENTER)
-dobyear = ttk.Entry(Lframe1, width=10, justify=CENTER)
+dobdate = Entry(Lframe1, width=5, justify=CENTER)
+dobmonth = Entry(Lframe1, width=5, justify=CENTER)
+dobyear = Entry(Lframe1, width=10, justify=CENTER)
 
 datelabel = Label(Lframe1, bg="gray82", fg="black",
                   text="D", font=("arial", 10, "bold"))
@@ -406,9 +401,9 @@ datelabel.pack(side=RIGHT)
 
 # ******************codes for date of joining user input enytry box******************
 
-jdate = ttk.Entry(Lframe3, width=5,  justify=CENTER)
-jmonth = ttk.Entry(Lframe3, width=5, justify=CENTER)
-jyear = ttk.Entry(Lframe3, width=10, justify=CENTER)
+jdate = Entry(Lframe3, width=5,  justify=CENTER)
+jmonth = Entry(Lframe3, width=5, justify=CENTER)
+jyear = Entry(Lframe3, width=10, justify=CENTER)
 
 datelabel = Label(Lframe3, bg="gray82", fg="black",
                   text="D", font=("arial", 10, "bold"))
@@ -432,9 +427,9 @@ r_date = StringVar()
 r_month = StringVar()
 r_year = StringVar()
 
-rdate = ttk.Entry(Lframe4, width=5, textvariable=r_date, justify=CENTER)
-rmonth = ttk.Entry(Lframe4, width=5, textvariable=r_month, justify=CENTER)
-ryear = ttk.Entry(Lframe4, width=10, textvariable=r_year, justify=CENTER)
+rdate = Entry(Lframe4, width=5, textvariable=r_date, justify=CENTER)
+rmonth = Entry(Lframe4, width=5, textvariable=r_month, justify=CENTER)
+ryear = Entry(Lframe4, width=10, textvariable=r_year, justify=CENTER)
 
 datelabel = Label(Lframe4, bg="gray82", fg="black",
                   text="D", font=("arial", 10, "bold"))
@@ -456,14 +451,14 @@ datelabel.pack(side=RIGHT)
 # ******************** codes for basic pay user input entry box**************
 
 
-basicpay = ttk.Entry(Lframe5, width=31, justify=RIGHT, )
+basicpay = Entry(Lframe5, width=31, justify=RIGHT, )
 basicpay.pack(side=RIGHT, ipady=3, padx=10)
 
 # ******************* codes for dropdown menu of commutation percentage************
 # Combobox creation
 
-coummutper = ttk.Combobox(Lframe6, width=7, values=[
-                          "Select", "40", "30", "20", "10"], state="readonly")
+coummutper = Combobox(Lframe6, width=7, values=[
+    "Select", "40", "30", "20", "10"], state="readonly")
 
 
 coummutper.pack(side=RIGHT, padx=10)
@@ -480,7 +475,7 @@ coummutper.bind('<<ComboboxSelected>>', set_percentage_comm_val)
 
 # ******************* codes for age next birthday user input entry box*************
 
-age = ttk.Entry(Lframe7, width=10, justify=CENTER)
+age = Entry(Lframe7, width=10, justify=CENTER)
 age.pack(side=RIGHT, padx=10, ipady=3)
 
 
@@ -570,6 +565,7 @@ label1 = Label(
     padx=10,
     anchor=E,
     width=12
+
 
 )
 label1.pack(side=RIGHT, padx=8)
