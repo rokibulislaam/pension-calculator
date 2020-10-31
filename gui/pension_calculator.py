@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import Button, Entry, Frame, Label, StringVar
 from tkinter.constants import BOTH, CENTER, E, FLAT, LEFT, RIGHT, TOP, TRUE, W, X
@@ -61,7 +62,7 @@ root = tk.Tk()
 root.geometry("1300x770+115+15")
 root.resizable(0, 0)
 root.title("Pension_Calculator")
-root.iconbitmap("D:/GUI/icons/pcalcy1.ico")
+root.iconbitmap(os.path.join(os.getcwd(), 'gui', 'icons', 'pcalcy1.ico'))
 
 # ********************* codes for main frame and sub frame******************************
 
