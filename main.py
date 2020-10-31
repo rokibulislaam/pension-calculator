@@ -3,6 +3,8 @@ import tkinter as tk
 from tkinter import Button, Entry, Frame, Label, StringVar
 from tkinter.constants import BOTH, CENTER, E, FLAT, LEFT, RIGHT, TOP, TRUE, W, X
 from tkinter.ttk import Combobox
+from utils.get_commutation_value import get_commutation_value
+from utils.calc_basic_pay import cal_basic_pay
 
 # ******** definition of functions***************************************
 
@@ -12,13 +14,6 @@ tempyear = 0   # global variable
 tempbpension = 0      # global variable
 typeOfretirement = "Select"  # global variable
 percentageOfComm = "Select"  # global variable
-
-
-def cal_basic_pay():
-    global tempbpension
-    tempbpension = int(basicpay.get())
-    tempbpension = tempbpension/2
-    return tempbpension
 
 
 def cal_service():
@@ -43,7 +38,7 @@ def cal_retirement():
 
 def calculate_pension():
     # if user keep basic pay entry box empty then no funtion will be called
-    tempbpension = cal_basic_pay()
+    tempbpension = cal_basic_pay(basicpay_widget=basicpay)
     bpension.set(tempbpension)
     mpension.set(tempbpension)
     # 30% of basic paysclae for family pension
@@ -62,7 +57,7 @@ root = tk.Tk()
 root.geometry("1300x770+115+15")
 root.resizable(0, 0)
 root.title("Pension_Calculator")
-root.iconbitmap(os.path.join(os.getcwd(), 'gui', 'icons', 'pcalcy1.ico'))
+root.iconbitmap(os.path.join(os.getcwd(), 'icons', 'pcalcy1.ico'))
 
 # ********************* codes for main frame and sub frame******************************
 
