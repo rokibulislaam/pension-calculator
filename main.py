@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import Button, Entry, Frame, Label, StringVar
 from tkinter.constants import BOTH, CENTER, E, FLAT, LEFT, RIGHT, TOP, TRUE, W, X
 from tkinter.ttk import Combobox
+from utils.reset import reset_fun
 from utils.get_commutation_value import get_commutation_value
 from utils.calc_basic_pay import cal_basic_pay
 
@@ -252,22 +253,6 @@ Rframe6 = Frame(rightframe,
 Rframe6.pack(expand=TRUE, fill=BOTH, padx=8, pady=5)
 
 
-reset = Button(
-    rightframe,
-    text="RESET",
-    font=("arial", 13, "bold"),
-    fg="black",
-    bg="gray45",
-    relief=FLAT,
-    padx=8,
-    pady=2,
-    activebackground="black",
-    activeforeground="white",
-
-)
-reset.pack(pady=10)
-
-
 # ************************ codes for input field***********************
 label1 = Label(
     Lframe2,
@@ -365,8 +350,6 @@ typeRetirement.current(0)  # method to set default value
 
 
 def change_combobox_value(eventObject):
-    typeOfretirement = eventObject.widget.get()
-    print(typeOfretirement)
     if(eventObject.widget.get() == "Superannuation" and eventObject.widget.get()):
         cal_retirement()
 
@@ -480,7 +463,7 @@ age.pack(side=RIGHT, padx=10, ipady=3)
 
 
 # *****************************codes for output area*****************************
-
+# ********* name labels ************
 label1 = Label(
     Rframe1,
     text="Basic Pension",
@@ -553,7 +536,7 @@ label6 = Label(
 )
 label6.pack(side=LEFT)
 
-# *************** codes fof output field to display values****************
+# *************** codes for output field to display values****************
 
 bpension = StringVar()
 label1 = Label(
@@ -565,8 +548,6 @@ label1 = Label(
     padx=10,
     anchor=E,
     width=12
-
-
 )
 label1.pack(side=RIGHT, padx=8)
 
@@ -652,6 +633,26 @@ label7 = Label(
     anchor=CENTER,
     width=2
 )
+
+
+# ********** Reset Button ******************
+
+
+reset = Button(
+    rightframe,
+    text="RESET",
+    font=("arial", 13, "bold"),
+    fg="black",
+    bg="gray45",
+    relief=FLAT,
+    padx=8,
+    pady=2,
+    activebackground="black",
+    activeforeground="white",
+    command=lambda: reset_fun(bpension, mpension, fpension,
+                              cammount, rmpension, qmonth, qyear, dobdate, dobmonth, dobyear, jdate, jmonth, jyear, rdate, rmonth, ryear, basicpay, age,  typeRetirement, coummutper)
+)
+reset.pack(pady=10)
 
 monthlabel = Label(Rframe6, bg="gray82", fg="black",
                    text="M", font=("arial", 10, "bold"))
