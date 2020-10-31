@@ -1,6 +1,6 @@
 import os
 import tkinter as tk
-from tkinter import Button, Entry, Frame, Label, StringVar
+from tkinter import Button, Entry, Frame, Label, StringVar, messagebox
 from tkinter.constants import BOTH, CENTER, E, FLAT, LEFT, RIGHT, TOP, TRUE, W, X
 from tkinter.ttk import Combobox
 from utils.reset import reset_fun
@@ -13,8 +13,8 @@ tempdate = 0   # global variable
 tempmonth = 0  # global variable
 tempyear = 0   # global variable
 tempbpension = 0      # global variable
-typeOfretirement = "Select"  # global variable
-percentageOfComm = "Select"  # global variable
+typeofretirement = "Select"  # global variable
+percentageofComm = "Select"  # global variable
 
 
 def cal_service():
@@ -37,25 +37,55 @@ def cal_retirement():
     r_year.set(str(rtempyear))
 
 
+def cal_service_years():
+    global tempdate, tempmonth, tempyear
+    tempdate = (int(rdate.get()) - int(jdate.get()))
+    tempmonth = (int(rmonth.get()) - int(jmonth.get()))
+    tempyear = (int(ryear.get()) - int(jyear.get()))
+    if(int(jmonth.get()) > int(rmonth.get())):
+        tempyear = tempyear - 1
+        # function to convert negative num into positive num
+        tempmonth = abs(tempmonth)
+    return tempyear
+
+
 def calculate_pension():
-    # if user keep basic pay entry box empty then no funtion will be called
-    tempbpension = cal_basic_pay(basicpay_widget=basicpay)
-    bpension.set(tempbpension)
-    mpension.set(tempbpension)
-    # 30% of basic paysclae for family pension
-    fpension.set(int(basicpay.get()) * 0.3)
-    cammount.set("N/A")
-    rmpension.set("N/A")
-    cal_service()
-    qmonth.set(tempmonth)
-    qyear.set(tempyear)
+    if(cal_service_years() < 20):
+        messagebox.showerror(
+            title=None, message="No Pension! (Service is less than 20 years)")
+    else:
+        # if user keep basic pay entry box empty then no funtion will be called
+        tempbpension = cal_basic_pay(basicpay_widget=basicpay)
+        bpension.set(tempbpension)
+        mpension.set(tempbpension)
+        # 30% of basic paysclae for family pension
+        fpension.set(int(basicpay.get()) * 0.3)
+        cammount.set("N/A")
+        rmpension.set("N/A")
+        cal_service()
+        qmonth.set(tempmonth)
+        qyear.set(tempyear)
+
+
+def cal_commutation():
+    if(coummutper.get() and age.get()):
+        percentage_of_basic_payscale = float(
+            bpension.get()) * int(coummutper.get())/100
+        age_next_birthday = int(age.get())
+        commutation = 12 * \
+            int(get_commutation_value(age_next_birthday)) * \
+            int(percentage_of_basic_payscale)
+        global cammount
+        global rmpension
+        cammount.set(commutation)
+        rmpension.set(float(bpension.get()) - percentage_of_basic_payscale)
 
 
 root = tk.Tk()
 
 
 # color will be used gray70
-root.geometry("1300x770+115+15")
+root.geometry("1200x700+115+15")
 root.resizable(0, 0)
 root.title("Pension_Calculator")
 root.iconbitmap(os.path.join(os.getcwd(), 'icons', 'pcalcy1.ico'))
@@ -189,6 +219,7 @@ submitbutton2 = Button(
     pady=2,
     activebackground="black",
     activeforeground="white",
+    command=cal_commutation
 
 )
 submitbutton2.pack(pady=5)
@@ -256,7 +287,7 @@ Rframe6.pack(expand=TRUE, fill=BOTH, padx=8, pady=5)
 # ************************ codes for input field***********************
 label1 = Label(
     Lframe2,
-    text="Type Of Retirement",
+    text="Type of Retirement",
     font=("arial", 14),
     bg="gray82",
     fg="black",
@@ -268,7 +299,7 @@ label1.pack(side=LEFT)
 
 label2 = Label(
     Lframe1,
-    text="Date Of Birth",
+    text="Date of Birth",
     font=("arial", 14),
     bg="gray82",
     fg="black",
@@ -280,7 +311,7 @@ label2.pack(side=LEFT)
 
 label3 = Label(
     Lframe3,
-    text="Date Of Joining",
+    text="Date of Joining",
     font=("arial", 14),
     bg="gray82",
     fg="black",
@@ -292,7 +323,7 @@ label3.pack(side=LEFT)
 
 label4 = Label(
     Lframe4,
-    text="Date Of Retirement",
+    text="Date of Retirement",
     font=("arial", 14),
     bg="gray82",
     fg="black",
@@ -304,7 +335,7 @@ label4.pack(side=LEFT)
 
 label5 = Label(
     Lframe5,
-    text="Basic Pay Or Average Of Last 10 mont Emoluments",
+    text="Basic Pay or Average of Last 10 month Emoluments",
     font=("arial", 14),
     bg="gray82",
     fg="black",
@@ -316,7 +347,7 @@ label5.pack(side=LEFT)
 
 label6 = Label(
     Lframe6,
-    text="Percentage Of Commutation(Max 40%)",
+    text="Percentage of Commutation(Max 40%)",
     font=("arial", 14),
     bg="gray82",
     fg="black",
@@ -448,13 +479,13 @@ coummutper.pack(side=RIGHT, padx=10)
 coummutper.current(0)  # method to set default value
 
 
-def set_percentage_comm_val(event):
-    percentageOfComm = event.widget.get()
-    if(event.Widget.get() != 'Select'):
-        cal_retirement()
+# def set_percentage_comm_val(event):
+#     percentage_of_comm = event.widget.get()
+#     if(event.Widget.get() != 'Select'):
+#         cal_commutation(percentage_of_comm)
 
 
-coummutper.bind('<<ComboboxSelected>>', set_percentage_comm_val)
+# coummutper.bind('<<ComboboxSelected>>', set_percentage_comm_val)
 
 # ******************* codes for age next birthday user input entry box*************
 
