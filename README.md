@@ -1,6 +1,6 @@
 # Pension Calculator
 
-A basic pension calualtor using python for INT213 :mortar_board:
+A basic pension calculator using python for INT213 :mortar_board:
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/rokibulislaam/pension-calculator?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/rokibulislaam/pension-calculator?style=flat-square)
@@ -21,8 +21,8 @@ cd pension-calculator && python main.py
 ```
 
 ## Screenshots
-![Super Annuation pension calcuation screenshot](assets/superannuation.png "Super Annuation pension calculation")
-![VRS Pension calcuation screenshot](assets/VRS.png "VRS Pension calcuation calculation")
+![Superannuation pension calcuation screenshot](assets/superannuation.png "Superannuation pension calculation")
+![VRS Pension calcuation screenshot](assets/VRS.png "VRS Pension calculation")
 
 
 ## License
