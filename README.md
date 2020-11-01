@@ -1,6 +1,6 @@
 # Pension Calculator
 
-A basic pension calculator using python for INT213 :mortar_board:
+A basic pension and commutation calculator using python for INT213 :mortar_board:
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/rokibulislaam/pension-calculator?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/rokibulislaam/pension-calculator?style=flat-square)
@@ -9,13 +9,13 @@ A basic pension calculator using python for INT213 :mortar_board:
 ![GitHub](https://img.shields.io/github/license/rokibulislaam/pension-calculator?style=flat-square)
 
 ## Getting Started
-Clone the repository
+1. Clone the repository
 
 ```shell
 git clone https://github.com/rokibulislaam/pension-calculator.git
 ```
 
-Run the program in python
+2. Run the program in python
 ```shell
 cd pension-calculator && python main.py
 ```
