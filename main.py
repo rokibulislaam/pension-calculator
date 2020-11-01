@@ -20,6 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 # 
+
+#Changed folder structure, hence lost contirbutions history, referer to https://github.com/rokibulislaam/pension-calculator/commit/00bc59100c2546656e341ca5364f78ffe474f0a8 to see commits until changing the folder structure
+
 import os
 import tkinter as tk
 from tkinter import Button, Entry, Frame, Label, StringVar, messagebox
